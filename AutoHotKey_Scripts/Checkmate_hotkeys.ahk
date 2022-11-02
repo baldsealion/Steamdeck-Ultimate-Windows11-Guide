@@ -160,13 +160,24 @@ return
 +!m::XButton2
 return
 
-;F23 remapped to Mouse Left
-F23::LButton
-return
+;Volume Increment and Mute function by holding both Volume Up & Down button
+$Volume_Up::
+SoundGet, volume
+Send {Volume_Up}
+SoundSet, volume + 5
+Return
 
-;F24 remapped to Mouse Right
-F24::RButton
-return
+$Volume_Down::
+SoundGet, volume
+Send {Volume_Down}
+SoundSet, volume - 5
+Return
+
+~Volume_Down & Volume_Up::
+~Volume_Up & Volume_Down::
+Send {Volume_Mute}
+Sleep, 1000
+Return
 
 ; Custom Hide TrayTip to hide it faster
 HideTrayTip() {
