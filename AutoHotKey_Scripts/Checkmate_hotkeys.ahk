@@ -34,10 +34,9 @@ if !A_IsAdmin {
 
 ; TDP Adjuster & TDP Profiles
 ; On Script Reload, TDP will default back to 15W
-
-TrayTip, ,TDP set to 15W, 1, 0
-Sleep 1000
 HideTrayTip()
+TrayTip, ,TDP set to 15W, 1, 0
+SetTimer, HideTrayTip, -2000
 defaultSlowFast := 15000
 defaultStamp := 1500
 Run, *RunAs %ryzenadjPath% --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%", hide
@@ -46,9 +45,9 @@ return
 
 ; Win + Numpad 4 ==> Set Default TDP to 15W
 #Numpad4::
-TrayTip, ,Set TDP to 15W, 1, 0
-Sleep 2000
 HideTrayTip()
+TrayTip, ,Set TDP to 15W, 1, 0
+SetTimer, HideTrayTip, -2000
 defaultSlowFast := 15000
 defaultStamp := 1500
 Run, *RunAs %ryzenadjPath% --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
@@ -56,6 +55,7 @@ return
 
 ; Win + Numpad 5 ==> Increase TDP by 1W
 #Numpad5::
+HideTrayTip()
 CurrentTDP := Ceil(defaultSlowFast/1000)
 if (defaultSlowFast < 15000 or defaultStamp < 1500)
 {
@@ -63,18 +63,17 @@ defaultSlowFast := % defaultSlowFast + 1000
 defaultStamp := % defaultStamp + 100
 CurrentTDP := Ceil(defaultSlowFast/1000)
 TrayTip, ,TDP increased by 1W. Current TDP: %CurrentTDP%W, 1, 0
-Sleep 2000
-HideTrayTip()
+SetTimer, HideTrayTip, -2000
 Run, *RunAs %ryzenadjPath% --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
 } else {
 TrayTip, ,TDP cannot exceed 15W. Current TDP: %CurrentTDP%W, 1, 3
-Sleep 3000
-HideTrayTip()
+SetTimer, HideTrayTip, -3000
 }
 return
 
 ; Win + Numpad 6 ==> Decrease TDP by 1W
 #Numpad6::
+HideTrayTip()
 CurrentTDP := Ceil(defaultSlowFast/1000)
 if (defaultSlowFast > 3000 or defaultStamp > 300)
 {
@@ -82,29 +81,27 @@ defaultSlowFast := % defaultSlowFast - 1000
 defaultStamp := % defaultStamp - 100
 CurrentTDP := Ceil(defaultSlowFast/1000)
 TrayTip, ,TDP decreased by 1W. Current TDP: %CurrentTDP%W, 1, 0
-Sleep 2000
-HideTrayTip()
+SetTimer, HideTrayTip, -2000
 Run, *RunAs "%ryzenadjPath%" --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast% 
 } else {
 TrayTip, ,TDP cannot be below 3W. Current TDP: %CurrentTDP%W, 1, 3
-Sleep 3000
-HideTrayTip()
+SetTimer, HideTrayTip, -3000
 }
 return
 
 ; Win + Numpad 7 ==> Read Current TDP
 #Numpad7::
+HideTrayTip()
 CurrentTDP := Ceil(defaultSlowFast/1000)
 TrayTip, ,Current TDP: %CurrentTDP%W, 1, 0
-Sleep 2000
-HideTrayTip()
+SetTimer, HideTrayTip, -3000
 return
 
-; Win + Numpad 8 ==> Set Default TDP to 3W
+; Win + Numpad 8 ==> Set Default TDP to 5W
 #Numpad8::
-TrayTip, ,Set TDP to 5W, 1, 0
-Sleep 2000
 HideTrayTip()
+TrayTip, ,Set TDP to 5W, 1, 0
+SetTimer, HideTrayTip, -2000
 defaultSlowFast := 5000
 defaultStamp := 500
 Run, *RunAs "%ryzenadjPath%" --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
@@ -112,9 +109,9 @@ return
 
 ; Win + Numpad 9 ==> Set Default TDP to 10W
 #Numpad9::
-TrayTip, ,Set TDP to 10W, 1, 0
-Sleep 2000
 HideTrayTip()
+TrayTip, ,Set TDP to 10W, 1, 0
+SetTimer, HideTrayTip, -2000
 defaultSlowFast := 10000
 defaultStamp := 1000
 Run, *RunAs "%ryzenadjPath%" --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
@@ -124,17 +121,17 @@ return
 
 ;Shift-Alt-1 change refresh rate to 40Hz
 +!1::
-TrayTip, ,Refresh Rate 40Hz, 1, 0
-Sleep 1000
 HideTrayTip()
+TrayTip, ,Refresh Rate 40Hz, 1, 0
+SetTimer, HideTrayTip, -2000
 Run, "%nircmdPath%" setdisplay monitor:0 1280 800 32 40
 return
 
 ;Shift-Alt-2 change refresh rate to 60Hz
 +!2::
-TrayTip, ,Refresh Rate 60Hz, 1, 0
-Sleep 1000
 HideTrayTip()
+TrayTip, ,Refresh Rate 60Hz, 1, 0
+SetTimer, HideTrayTip, -2000
 Run, "%nircmdPath%" setdisplay monitor:0 1280 800 32 60
 return
 
