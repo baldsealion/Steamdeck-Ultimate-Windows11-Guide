@@ -51,6 +51,7 @@ SetTimer, HideTrayTip, -2000
 defaultSlowFast := 15000
 defaultStamp := 1500
 Run, *RunAs %ryzenadjPath% --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
+Sleep 200
 return
 
 ; Win + Numpad 5 ==> Increase TDP by 1W
@@ -69,6 +70,7 @@ Run, *RunAs %ryzenadjPath% --stapm-limit=%defaultStamp% --slow-limit=%defaultSlo
 TrayTip, ,TDP cannot exceed 15W. Current TDP: %CurrentTDP%W, 1, 3
 SetTimer, HideTrayTip, -3000
 }
+Sleep 200
 return
 
 ; Win + Numpad 6 ==> Decrease TDP by 1W
@@ -87,6 +89,7 @@ Run, *RunAs "%ryzenadjPath%" --stapm-limit=%defaultStamp% --slow-limit=%defaultS
 TrayTip, ,TDP cannot be below 3W. Current TDP: %CurrentTDP%W, 1, 3
 SetTimer, HideTrayTip, -3000
 }
+Sleep 200
 return
 
 ; Win + Numpad 7 ==> Read Current TDP
@@ -95,6 +98,7 @@ HideTrayTip()
 CurrentTDP := Ceil(defaultSlowFast/1000)
 TrayTip, ,Current TDP: %CurrentTDP%W, 1, 0
 SetTimer, HideTrayTip, -3000
+Sleep 200
 return
 
 ; Win + Numpad 8 ==> Set Default TDP to 5W
@@ -105,6 +109,7 @@ SetTimer, HideTrayTip, -2000
 defaultSlowFast := 5000
 defaultStamp := 500
 Run, *RunAs "%ryzenadjPath%" --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
+Sleep 200
 return
 
 ; Win + Numpad 9 ==> Set Default TDP to 10W
@@ -115,6 +120,7 @@ SetTimer, HideTrayTip, -2000
 defaultSlowFast := 10000
 defaultStamp := 1000
 Run, *RunAs "%ryzenadjPath%" --stapm-limit=%defaultStamp% --slow-limit=%defaultSlowFast% --fast-limit=%defaultSlowFast%
+Sleep 200
 return
 
 ; Changing Refresh rate
@@ -125,6 +131,7 @@ HideTrayTip()
 TrayTip, ,Refresh Rate 40Hz, 1, 0
 SetTimer, HideTrayTip, -2000
 Run, "%nircmdPath%" setdisplay monitor:0 1280 800 32 40
+Sleep 200
 return
 
 ;Shift-Alt-2 change refresh rate to 60Hz
@@ -133,6 +140,7 @@ HideTrayTip()
 TrayTip, ,Refresh Rate 60Hz, 1, 0
 SetTimer, HideTrayTip, -2000
 Run, "%nircmdPath%" setdisplay monitor:0 1280 800 32 60
+Sleep 200
 return
 
 ; Changing Brightness
@@ -140,11 +148,13 @@ return
 ;Shift-Alt-3 brightness up to 10
 +!3::
 Run, "%nircmdPath%" changebrightness -10
+Sleep 200
 return
 
 ;Shift-Alt-4 brightness down to 10
 +!4::
 Run, "%nircmdPath%" changebrightness 10
+Sleep 200
 return
 
 ;Remap Mouse Button Xbutton1 and Xbutton2:
