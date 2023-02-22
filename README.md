@@ -1,6 +1,5 @@
-# Steamdeck-Ultimate-Windows11-Guide
-Customizations and instructions for Windows 10/11 setup for Steam Deck
+# LEGACY wiki -- DEPRECATED--
+# Effective 2-22-2023
+# Please use the new HTML-based guide https://baldsealion.github.io/Steam-Deck-Ultimate-Windows-Guide/
 
-PLEASE GO TO THE WIKI TAB TO SEE INSTRUCTIONS TO FOLLOW OR CLICK THE LINK BELOW:
-
-https://github.com/baldsealion/Steamdeck-Ultimate-Windows11-Guide/wiki
+**This wiki will no longer receive updates**
